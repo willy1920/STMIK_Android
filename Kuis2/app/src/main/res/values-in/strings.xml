@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Kuis2</string>
+
+    <string name="header1">Lokasi</string>
+    <string name="street">Jalan</string>
+    <string name="zip">Kode Pos</string>
+    <string name="city">Kota</string>
+    <string name="country">Kota</string>
+
+    <string name="userdate">Data Pengguna</string>
+    <string name="name">Nama</string>
+    <string name="phone">No. HP</string>
+    <string name="email">Surel</string>
+
+    <string name="save">Simpan</string>
+    <string name="reset">Ulang</string>
+</resources>
