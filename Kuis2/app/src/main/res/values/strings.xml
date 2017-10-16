@@ -1,17 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kuis2</string>
-
-    <string name="header1">Location</string>
-    <string name="street">Street</string>
+    <string name="app_name">Kuis</string>
+    <string name="header1">Kuis2</string>
+    <string name="name">Name</string>
     <string name="zip">ZIP Code</string>
     <string name="city">City</string>
     <string name="country">Country</string>
-
-    <string name="userdate">User Data</string>
-    <string name="name">Name</string>
-    <string name="phone">Phone</string>
+    <string name="phone">Phone number</string>
     <string name="email">Email</string>
-
     <string name="save">Save</string>
     <string name="reset">Reset</string>
 </resources>
