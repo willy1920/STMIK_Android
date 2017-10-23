@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Spinner Basic</string>
+    <string-array name="hobi_array">
+        <item>Makan</item>
+        <item>Berenang</item>
+        <item>Bulu Tangkis</item>
+        <item>Sepeda</item>
+        <item>Baca Buku</item>
+        <item>Coding</item>
+        <item>Belanja</item>
+        <item>Dengar Music</item>
+        <item>Gaming</item>
+        <item>Masak</item>
+    </string-array>
+</resources>
