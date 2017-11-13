@@ -30,4 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Spinner tanggalSpinner  = (Spinner)findViewById(R.id.abc);
         tanggalSpinner.setAdapter(arrayAdapter);
     }
+
+    private void initDatabase(){
+
+    }
 }
