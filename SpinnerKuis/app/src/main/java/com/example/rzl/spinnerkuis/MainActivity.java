@@ -1,4 +1,4 @@
-package com.example.rzl.spinnerbasic;
+package com.example.rzl.spinnerkuis;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.rzl.spinnerbasic.model.Mahasiswa;
+import com.example.rzl.spinnerkuis.Model.Mahasiswa;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
@@ -19,28 +19,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
     private List<Mahasiswa> mahasiswaList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initTanggalSpinner();
-
         initDatabase();
-    }
-
-    private void initTanggalSpinner(){
-        List<String> tanggalList = new ArrayList<String>();
-        int maksimal = 31;
-        for(int i = 1; i <= maksimal; i++){
-            tanggalList.add(String.valueOf(i));
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tanggalList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-        Spinner tanggalSpinner  = (Spinner)findViewById(R.id.abc);
-        tanggalSpinner.setAdapter(arrayAdapter);
     }
 
     private void initDatabase(){
@@ -51,42 +35,44 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 getMahasiswaList(responseBody);
-                inisialisasiNamaSpinner();
+                initSpinner();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                TextView errorText = (TextView)findViewById(R.id.errorTextView);
-                errorText.setText(error.getMessage());
+                TextView textView = (TextView)findViewById(R.id.error);
+                textView.setText(error.getMessage());
             }
         });
     }
-    private void getMahasiswaList(byte[] responseBody){
+
+    private void getMahasiswaList(byte[] responsebody){
         Gson gson = new Gson();
 
         try{
-            mahasiswaList = gson.fromJson(new String(responseBody), new TypeToken<List<Mahasiswa>>(){}.getType());
+            mahasiswaList = gson.fromJson(new String(responsebody), new TypeToken<List<Mahasiswa>>(){}.getType());
         }
         catch (Exception e){
-            TextView errorTextView = (TextView)findViewById(R.id.errorTextView);
+            TextView error = (TextView)findViewById(R.id.error);
+            error.setText(e.toString());
         }
-
     }
 
-    private void inisialisasiNamaSpinner(){
+    private void initSpinner(){
         List<String> namaList = new ArrayList<String>();
         Mahasiswa mahasiswa;
         String nama;
-        for(int mahasiswaIndex = 0; mahasiswaIndex < mahasiswaList.size(); mahasiswaIndex++){
-            mahasiswa = mahasiswaList.get(mahasiswaIndex);
+        for (int i=0; i < mahasiswaList.size(); i++){
+            mahasiswa = mahasiswaList.get(i);
             nama = mahasiswa.getNama();
             namaList.add(nama);
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, namaList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, namaList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
-        Spinner namaSpinner = (Spinner)findViewById(R.id.nama);
-        namaSpinner.setAdapter(arrayAdapter);
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        spinner.setAdapter(arrayAdapter);
+
     }
 }
